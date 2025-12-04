@@ -30,15 +30,20 @@ def find_max2(n):
 
 
 def find_max(n, l):
-    res = ""
-    searchspace = n
     for i_max in range(-(l - 1), 1):
-        high = max(searchspace[: i_max or None])
-        i_min = searchspace[: i_max or None].index(high)
-        searchspace = searchspace[i_min + 1 :]
-        res += str(high)
-    return int(res)
+        high = max(n[: i_max or None])
+        i_min = n[: i_max or None].index(high)
+        n = n[i_min + 1 :]
+        yield str(high)
 
 
-print(sum([find_max(n, 2) for n in parse_input(input)]))
-print(sum([find_max(n, 12) for n in parse_input(input)]))
+# print(sum([find_max1(n) for n in parse_input(input)]))
+# 17332
+# print(sum([find_max2(n) for n in parse_input(input)]))
+# 172516781546707
+
+
+print(sum([int("".join(find_max(n, 2))) for n in parse_input(input)]))
+# 17332
+print(sum([int("".join(find_max(n, 12))) for n in parse_input(input)]))
+# 172516781546707
